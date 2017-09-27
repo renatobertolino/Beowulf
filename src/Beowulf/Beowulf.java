@@ -9,7 +9,7 @@ public class Beowulf {
 	private double esquiva;
 	private Arma []armaBeowulf;
 	private int pesoAtual;
-	
+
 	public Beowulf(){
 		armaBeowulf=new Arma[3];
 		cadastrarArmas(armaBeowulf);
@@ -52,13 +52,13 @@ public class Beowulf {
 		this.healthPoints = healthPoints;
 	}
 
-	public int getPesoMáximo() {
+	public int getPesoMaximo() {
 		return pesoMáximo;
 	}
 
-	public void setPesoMáximo(int pesoMáximo) {
+	public void setPesoMaximo(int pesoMáximo) {
 		this.pesoMáximo = pesoMáximo;	
-		
+
 	}
 
 	public int getDefesa() {
@@ -77,15 +77,9 @@ public class Beowulf {
 		this.esquiva = esquiva;
 	}
 
-
-
-
 	public Arma[] getArmaBeowulf() {
 		return armaBeowulf;
 	}
-
-
-
 
 	public void setArmaBeowulf(Arma[] armaBeowulf) {
 		this.armaBeowulf = armaBeowulf;
@@ -99,13 +93,13 @@ public class Beowulf {
 		this.pesoAtual = pesoAtual;
 	}
 
-	public Arma getArmaBeowulfEspecífica(int i){
+	public Arma getArmaBeowulfEspecifica(int i){
 		return armaBeowulf[i];
 	}
 
 	public void setArmaEspecifica(Arma arma, int i) {
 		armaBeowulf[i] = arma;
 
-}
+	}
 
 }

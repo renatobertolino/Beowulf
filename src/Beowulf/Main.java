@@ -7,7 +7,7 @@ public class Main {
 
 	static Random random = new Random();
 	static Scanner scanner = new Scanner(System.in);
-	static Dragão dragão = new Dragão();
+	static Dragao dragao = new Dragao();
 	static Beowulf beo = new Beowulf();
 	static Loja loja = new Loja();
 
@@ -18,19 +18,19 @@ public class Main {
 
 	private static void iniciarMenuJogo() {
 
-		int opção=0;
+		int opçao=0;
 
 		do {
 			System.out.println("1.Loja\n2.Batalha\n3.Desistir");
-			opção=scanner.nextInt();
+			opçao=scanner.nextInt();
 
-			switch (opção) {
-			
+			switch (opçao) {
+
 			case 0:
 				trollada();
-				
+
 				break;
-				
+
 			case 1:
 				menuLoja();
 
@@ -53,14 +53,14 @@ public class Main {
 			}
 
 
-		} while (opção>3);
+		} while (opçao>3);
 
 	}
 
 	private static void trollada() {
 		System.out.println("Digite um nome: ");
 		String nome = scanner.next();
-		
+
 		System.out.println(nome + " é...");
 		System.out.println();
 		System.out.println(" \\\\        //  ||     //\\\\            ||  ||===||");
@@ -68,24 +68,24 @@ public class Main {
 		System.out.println("   \\\\    //    ||   //    \\\\     ||   ||  ||   ||");
 		System.out.println("    \\\\  //     ||  //======\\\\    ||   ||  ||   ||");
 		System.out.println("     \\\\//      || //        \\\\   ||___||  ||___||");
-		
+
 	}
 
 	private static void batalha() {
 
 		int arma = selecionarArma();
-		int opção;
+		int opçao;
 		boolean fimDoJogo=false;
 
 		do {
-			System.out.println("Arma Atual: "+beo.getArmaBeowulfEspecífica(arma).getNome()+" Dano: "+beo.getArmaBeowulfEspecífica(arma).getDano());
+			System.out.println("Arma Atual: "+beo.getArmaBeowulfEspecifica(arma).getNome()+" Dano: "+beo.getArmaBeowulfEspecifica(arma).getDano());
 			System.out.println("1.Atacar\n2.Trocar Arma\n3.Fugir como garotinha");
-			opção=scanner.nextInt();
+			opçao=scanner.nextInt();
 
-			switch (opção) {
+			switch (opçao) {
 			case 1:
 
-				fimDoJogo = atacarDragão(arma);
+				fimDoJogo = atacarDragao(arma);
 
 				break;
 
@@ -95,20 +95,20 @@ public class Main {
 				break;
 
 			case 3:
-			
+
 				System.out.println("Beowulf é fraco, fugiu e chorou");				
 				iniciarMenuJogo();
 
 				break;
-		
+
 			default:
-				
+
 				System.out.println("Opção inválida");
 
 				break;
 			}
 
-		} while (opção!=3&&fimDoJogo==false);
+		} while (opçao!=3&&fimDoJogo==false);
 	}
 
 	private static int trocarArma(int arma) {
@@ -118,9 +118,9 @@ public class Main {
 			System.out.println("Opções:\n");
 
 			for (int i = 0; i < 3; i++) {
-			
-				System.out.println((i+1)+"- "+beo.getArmaBeowulfEspecífica(i).getNome());
-			
+
+				System.out.println((i+1)+"- "+beo.getArmaBeowulfEspecifica(i).getNome());
+
 			}
 			escolha=scanner.nextInt();
 
@@ -129,24 +129,31 @@ public class Main {
 		return escolha-1;
 	}
 
-	private static boolean atacarDragão(int arma) {
+	private static boolean atacarDragao(int arma) {
 		boolean morreu = false;
 		double probabilidadeAcerto=0.0+random.nextInt(2);
 
-		if(probabilidadeAcerto>dragão.getEsquivaNatural()){
-			dragão.setHealthPoints(dragão.getHealthPoints()-(beo.getArmaBeowulfEspecífica(arma).getDano()-dragão.getArmadura()/2));
+		if(probabilidadeAcerto>dragao.getEsquivaNatural()){
+
+			dragao.setHealthPoints(dragao.getHealthPoints()-(beo.getArmaBeowulfEspecifica(arma).getDano()-dragao.getArmadura()/2));
 			System.out.println("Você acertou");
+
 		}else{
+
 			System.out.println("Você errou");
+
 		}
 
-		if(dragão.getHealthPoints()<=0){
+		if(dragao.getHealthPoints()<=0){
 
-			System.out.println("Parabéns!!! você merece ser chamado de Deus por matar o Dragão Smaug");
-			perguntarContinuação();
+			System.out.println("Parabéns!!! você merece ser chamado de Deus por matar o Dragão desgraçado do Smaug");
+			perguntarContinuacao();
 			morreu=true;
+
 		}else{
+
 			morreu=receberAtaque(arma);
+
 		}
 
 
@@ -160,34 +167,43 @@ public class Main {
 
 		if(probabilidadeAcerto>beo.getEsquiva()){
 
-			beo.setHealthPoints(beo.getHealthPoints()-(dragão.getBolaDeFogo()-(beo.getDefesa()/2)+beo.getArmaBeowulfEspecífica(arma).getDefesa()));
+			beo.setHealthPoints(beo.getHealthPoints()-(dragao.getBolaDeFogo()-(beo.getDefesa()/2)+beo.getArmaBeowulfEspecifica(arma).getDefesa()));
 			System.out.println("Beowulf foi atingido por uma bola de fogo");
+
 		}else{
+
 			System.out.println("Beowulf esquivou do ataque do dragão");
+
 		}
 
 
 		if(beo.getHealthPoints()<=0){
+
 			System.out.println("Você não Upou o suficiente e foi morto de maneira trágica pelo dragão");
 			System.out.println("Vai cry?");
 			morreu=true;
+
 		}else{
-			System.out.println("HP Dragão: " + dragão.getHealthPoints());
+
+			System.out.println("HP Dragão: " + dragao.getHealthPoints());
 			System.out.println("HP Beowulf: "+ beo.getHealthPoints());
+
 		}
 
 		return morreu;
 	}
 
-	private static void perguntarContinuação() {
-		int opção=0;
+	private static void perguntarContinuacao() {
+		int opcao=0;
 
 		do {
 			System.out.println("Deseja continuar com 1000 de moedas a mais?\n1.Sim\n2.Não ");
-			opção=scanner.nextInt();
+			opcao=scanner.nextInt();
 
-			switch (opção) {
+			switch (opcao) {
+			
 			case 1:
+			
 				System.out.println("Você recebeu 1000 de gold adicional");
 				beo.setDinheiro(beo.getDinheiro()+1000);
 				iniciarMenuJogo();
@@ -195,21 +211,25 @@ public class Main {
 				break;
 
 			case 2: 
+				
 				System.out.println("Beowulf voltou para a vila vitorioso e vai encher a cara com Hidromel o resto da vida");
 				break;
+				
 			default:
+				
 				System.out.println("opção inválida");
 				break;
+				
 			}
 
-		} while (opção>2);
+		} while (opcao>2);
 
 	}
 
 	private static int selecionarArma() {
 		int arma=0;
 		for (int i = 0; i < 3; i++) {
-			if(!(beo.getArmaBeowulfEspecífica(i).getNome().equals("Vazio"))){
+			if(!(beo.getArmaBeowulfEspecifica(i).getNome().equals("Vazio"))){
 				arma = i;
 				break;
 			}
@@ -219,22 +239,25 @@ public class Main {
 
 	private static void menuLoja() {
 
-		int opção;
+		int opcao;
 
 		do{
 			System.out.println("1.Comprar\n2.Vender\n3.Sair da loja");
-			opção=scanner.nextInt();
+			opcao=scanner.nextInt();
 
-			switch (opção) {
+			switch (opcao) {
 			case 1:
-				comprarArma();
 
+				comprarArma();
 				break;
+				
 			case 2:
+				
 				venderArma();
 				break;
 
 			case 3:
+				
 				iniciarMenuJogo();
 				break;
 
@@ -249,35 +272,39 @@ public class Main {
 
 
 
-		} while (opção>3);
+		} while (opcao>3);
 
 	}
 
 	private static void venderArma() {
-		Arma espaçoVazio = new Arma("Vazio",0,0,0,0);
+		Arma espacoVazio = new Arma("Vazio",0,0,0,0);
 
-		int opção;
-		
+		int opcao;
+
 		do{
-		
-		System.out.println("Nome-Dano-Peso-Valor");
-		for (int i = 0; i < 3; i++) {
-			System.out.println((i)+". "+beo.getArmaBeowulfEspecífica(i).getNome()+" - "+beo.getArmaBeowulfEspecífica(i).getDano()
-					+" - "+beo.getArmaBeowulfEspecífica(i).getPeso()+" - "+beo.getArmaBeowulfEspecífica(i).getValor());
-		}
-		opção=scanner.nextInt();
 
-		}while(opção>=3);
-		
-		
-		if(beo.getArmaBeowulfEspecífica(opção).getNome().equalsIgnoreCase("Vazio")){
-			System.out.println("Não se vende espaço vazio");
-		}else if(opção>2){
+			System.out.println("Nome-Dano-Peso-Valor");
+			for (int i = 0; i < 3; i++) {
+				System.out.println((i)+". "+beo.getArmaBeowulfEspecifica(i).getNome()+" - "+beo.getArmaBeowulfEspecifica(i).getDano()
+						+" - "+beo.getArmaBeowulfEspecifica(i).getPeso()+" - "+beo.getArmaBeowulfEspecifica(i).getValor());
+			}
+			opcao=scanner.nextInt();
+
+		}while(opcao>=3);
+
+
+		if(beo.getArmaBeowulfEspecifica(opcao).getNome().equalsIgnoreCase("Vazio")){
+			
+			System.out.println("Não se vende espaço vazio, anta!");
+			
+		}else if(opcao>2){
+			
 			System.out.println("Opção de arma inválida");
+	
 		}else{
 
-			beo.setDinheiro(beo.getDinheiro()+beo.getArmaBeowulfEspecífica(opção).getValor()/2);
-			beo.setArmaEspecifica(espaçoVazio, opção);
+			beo.setDinheiro(beo.getDinheiro()+beo.getArmaBeowulfEspecifica(opcao).getValor()/2);
+			beo.setArmaEspecifica(espacoVazio, opcao);
 		}
 
 		beo.calcularPesoAtual();
@@ -287,7 +314,7 @@ public class Main {
 
 	private static void comprarArma() {
 
-		int opçãoCompra;
+		int opcaoCompra;
 
 		do{
 			System.out.println("Você tem "+beo.getDinheiro()+ " de Ouro");
@@ -297,55 +324,55 @@ public class Main {
 				System.out.println((i)+". "+loja.getVisualizarArma(i).getNome()+" - "+loja.getVisualizarArma(i).getDano()
 						+" - "+loja.getVisualizarArma(i).getPeso()+" - "+loja.getVisualizarArma(i).getValor());
 			}
-			opçãoCompra=scanner.nextInt();
+			opcaoCompra=scanner.nextInt();
 
-		}while(opçãoCompra>=10);
+		}while(opcaoCompra>=10);
 
-		if(compraVálida(opçãoCompra)){
+		if(compraValida(opcaoCompra)){
 
-			beo.setArmaEspecifica(loja.getVisualizarArma(opçãoCompra), verificarPosiçãoVazia());
-			beo.setDinheiro(beo.getDinheiro()-loja.getVisualizarArma(opçãoCompra-1).getValor());
+			beo.setArmaEspecifica(loja.getVisualizarArma(opcaoCompra), verificarPosicaoVazia());
+			beo.setDinheiro(beo.getDinheiro()-loja.getVisualizarArma(opcaoCompra-1).getValor());
 
 			beo.calcularPesoAtual();
 		}
 		menuLoja();
 	}
 
-	private static boolean compraVálida(int opçãoCompra) {
-		boolean válida=true;
+	private static boolean compraValida(int opcaoCompra) {
+		boolean valida=true;
 
-		if(loja.getVisualizarArma(opçãoCompra).getPeso()+beo.getPesoAtual()>beo.getPesoMáximo()){
+		if(loja.getVisualizarArma(opcaoCompra).getPeso()+beo.getPesoAtual()>beo.getPesoMaximo()){
 			System.out.println("Você está pesado demais para carregar esta arma");
-			válida=false;
+			valida=false;
 		}else if(!verificarBolsa()){
 			System.out.println("Não tem espaço suficiente na bolsa");
-			válida=false;
-		}else if(loja.getVisualizarArma(opçãoCompra).getValor()>beo.getDinheiro()){
+			valida=false;
+		}else if(loja.getVisualizarArma(opcaoCompra).getValor()>beo.getDinheiro()){
 			System.out.println("Você não tem Gold suficiente");
-			válida=false;
+			valida=false;
 		}
 
 
-		return válida;
+		return valida;
 	}
 
 	private static boolean verificarBolsa() {
-		boolean verificação=false;
+		boolean verificacao=false;
 
 		for (int i = 0; i < 3; i++) {
-			if(beo.getArmaBeowulfEspecífica(i).getNome().equalsIgnoreCase("Vazio")){
-				verificação = true;
+			if(beo.getArmaBeowulfEspecifica(i).getNome().equalsIgnoreCase("Vazio")){
+				verificacao = true;
 			}
 		}
 
-		return verificação;
+		return verificacao;
 	}
 
-	private static int verificarPosiçãoVazia() {
+	private static int verificarPosicaoVazia() {
 
 		int posicaoVazia=0;
 		for (int i = 0; i < 3; i++) {
-			if(beo.getArmaBeowulfEspecífica(i).equals("Espaço Vazio")){
+			if(beo.getArmaBeowulfEspecifica(i).equals("Espaço Vazio")){
 
 				posicaoVazia=i;
 			}

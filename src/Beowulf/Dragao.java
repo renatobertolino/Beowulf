@@ -1,13 +1,13 @@
 package Beowulf;
 
-public class Dragão {
+public class Dragao {
 
 	private int healthPoints;
 	private double esquivaNatural;
 	private int bolaDeFogo;
 	private int armadura;
 	
-	public Dragão(){
+	public Dragao(){
 		healthPoints=100;
 		esquivaNatural=25;
 		bolaDeFogo=15;
